@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "artifacts": [
+    { "id": "container:svc-1.2.3.docker.tar", "kind": "container", "format": "docker-archive",
+      "path": "dist/svc-1.2.3.docker.tar", "file_name": "svc-1.2.3.docker.tar",
+      "version": "1.2.3", "sha256": "0000000000000000000000000000000000000000000000000000000000000000" },
+    { "id": "package:lib-1.2.3.nupkg", "kind": "package", "format": "nuget",
+      "path": "dist/lib-1.2.3.nupkg", "file_name": "lib-1.2.3.nupkg",
+      "version": "1.2.3", "sha256": "1111111111111111111111111111111111111111111111111111111111111111" },
+    { "id": "generic:bundle-1.2.3.zip", "kind": "generic", "format": "zip",
+      "path": "dist/bundle-1.2.3.zip", "file_name": "bundle-1.2.3.zip",
+      "version": "1.2.3", "sha256": "2222222222222222222222222222222222222222222222222222222222222222" },
+    { "id": "unknown:NOTES.md", "kind": "unknown", "format": "unknown",
+      "path": "dist/NOTES.md", "file_name": "NOTES.md",
+      "version": null, "sha256": "3333333333333333333333333333333333333333333333333333333333333333" }
+  ]
+}

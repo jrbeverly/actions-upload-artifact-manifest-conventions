@@ -1,0 +1,34 @@
+name: upload-artifacts
+description: Normalize routes, plan, and (when execute) distribute the manifest's artifacts.
+inputs:
+  manifest:
+    description: Manifest produced by artifacts-discover.
+    required: true
+  routes-raw:
+    description: Raw route_targets (local or aws) or an already-resolved route file.
+    required: true
+  routes:
+    description: Output path for the resolved route file.
+    required: true
+  plan:
+    description: Output path for the publish plan.
+    required: true
+  receipt:
+    description: Output path for the receipt (when execute is true).
+    required: true
+  execute:
+    description: When "true", run the publishers; otherwise plan only.
+    required: false
+    default: "false"
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      env:
+        MANIFEST: ${{ inputs.manifest }}
+        ROUTES_RAW: ${{ inputs.routes-raw }}
+        ROUTES: ${{ inputs.routes }}
+        PLAN: ${{ inputs.plan }}
+        RECEIPT: ${{ inputs.receipt }}
+        EXECUTE: ${{ inputs.execute }}
+      run: "${{ gitea.action_path }}/entrypoint.sh"

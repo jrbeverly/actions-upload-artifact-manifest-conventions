@@ -1,0 +1,11 @@
+# Vision
+
+The system treats artifacts as routable, distributable assets rather than registry-bound entities. Artifact discovery and artifact distribution operate as separate concerns, allowing pipelines to avoid deep awareness of specific storage backends. Rather than embedding upload behaviour directly into CI logic, workflows produce portable descriptions of discovered artifacts and apply routing behaviour against those descriptions.
+
+The core model is manifest-driven distribution. A workflow scans a directory, determines which artifacts exist, extracts lightweight metadata such as versions and checksums, and produces a manifest representing the discovered contents. The manifest functions as the contract between discovery and distribution. Distribution systems consume the manifest and apply routing logic to determine publication targets. Containers may publish to multiple ECR repositories simultaneously, while packages route to CodeArtifact, S3, or other destinations. Pipelines operate in terms of distributable artifacts and routing policy rather than direct registry-specific upload operations.
+
+The architecture favours simplicity over platformization. The repository does not position itself as a centralized artifact control plane or a heavily abstracted orchestration framework. Instead, it demonstrates that a lightweight composable model is sufficient to decouple artifact handling from registry-specific assumptions. Artifact inspection remains heuristic-driven and intentionally lightweight.
+
+Coexistence and gradual migration are treated as normal operating conditions. New artifact destinations can be introduced incrementally without requiring pipeline rewrites. Distribution behaviour naturally supports mirroring, fan-out publishing, staged migrations, and mixed environments. Existing registries and storage systems participate as interchangeable endpoints within a distribution topology rather than acting as foundational assumptions embedded directly into CI behaviour.
+
+The broader architectural philosophy preserves artifact mobility for as long as possible. Pipelines remain focused on artifact production, while distribution concerns evolve independently as modular, configurable components.

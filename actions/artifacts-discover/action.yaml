@@ -1,0 +1,17 @@
+name: artifacts-discover
+description: Scan a directory and emit the JSON artifact manifest.
+inputs:
+  artifact-dir:
+    description: Directory to scan.
+    required: true
+  manifest-path:
+    description: Output path for the manifest.
+    required: true
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      env:
+        ARTIFACT_DIR: ${{ inputs.artifact-dir }}
+        MANIFEST_PATH: ${{ inputs.manifest-path }}
+      run: "${{ gitea.action_path }}/entrypoint.sh"
